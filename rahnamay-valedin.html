@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>راهنمای والدین برای قهرمانان حواس جمع</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .guideline-card .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .guideline-card.active .details {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            transition: max-height 0.7s ease-in, padding 0.7s ease-in;
+        }
+        .guideline-card.active .icon-arrow {
+            transform: rotate(180deg);
+        }
+        .icon-arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Styles for Memory Match Game */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            max-width: 300px; /* Adjust grid size */
+            margin: 0 auto;
+        }
+        .memory-card {
+            width: 70px; /* Size of each card */
+            height: 70px;
+            background-color: #a78bfa; /* Indigo-400 */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            perspective: 1000px;
+            transition: transform 0.6s;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+            background-color: #ede9fe; /* Indigo-100 */
+        }
+        .memory-card .card-face {
+            position: absolute;
+            backface-visibility: hidden;
+        }
+        .memory-card .card-back {
+            transform: rotateY(0deg);
+            color: white;
+        }
+        .memory-card .card-front {
+            transform: rotateY(180deg);
+            color: #4c1d95; /* Indigo-900 */
+        }
+        .memory-card.matched {
+            background-color: #6ee7b7; /* Emerald-300 */
+            cursor: default;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-700 mb-2">🧠🌟 راهنمای والدین برای قهرمانان حواس جمع 🌟</h1>
+            <p class="text-lg text-slate-600">همکاری خانه و مدرسه برای تقویت توجه و تمرکز کودکان</p>
+        </header>
+
+        <!-- Core Concept Section -->
+        <section class="bg-indigo-100 border-r-4 border-indigo-500 rounded-lg p-6 mb-12 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-3">🧠 توجه و تمرکز: مهارتی که نیاز به تمرین و تکرار دارد!</h2>
+            <p class="text-slate-700 leading-relaxed">
+                همانند هر مهارت دیگری، **توجه و تمرکز** نیز با **تمرین و تکرار مداوم** تقویت می‌شود. این کارگاه ۱۰ جلسه‌ای، بستری را فراهم می‌کند تا فرزندان شما با بازی‌ها و فعالیت‌های هدفمند، ابزارهای لازم برای مدیریت حواس و تمرکز خود را بیاموزند. اما تاثیر این تمرینات، نیازمند **همراهی و تداوم** در محیط خانه نیز هست. همکاری شما والدین محترم، نقش کلیدی در ماندگاری و تعمیم این مهارت‌ها به زندگی روزمره فرزندانتان خواهد داشت.
+            </p>
+        </section>
+
+        <!-- Interactive Guidelines Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">🏡 راهنمایی‌های کلیدی برای شما</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" id="guidelines-container">
+
+                <!-- Guideline Card 1: Calm Environment -->
+                <div class="guideline-card bg-white rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-5 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-indigo-700">ایجاد محیط آرام در خانه</h3>
+                        <span class="text-3xl icon-arrow">🤫</span>
+                    </div>
+                    <div class="details px-5 text-slate-600 border-t border-slate-200">
+                        <p>فضایی آرام و دور از شلوغی و عوامل حواس‌پرتی (مانند صدای زیاد تلویزیون یا رفت‌وآمد مکرر) را فراهم کنید، به خصوص در زمان انجام تکالیف یا فعالیت‌های نیازمند تمرکز.</p>
+                    </div>
+                </div>
+
+                <!-- Guideline Card 2: Daily Practice -->
+                <div class="guideline-card bg-white rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-5 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-indigo-700">تشویق به تمرینات روزانه</h3>
+                        <span class="text-3xl icon-arrow">✨</span>
+                    </div>
+                    <div class="details px-5 text-slate-600 border-t border-slate-200">
+                        <p>فرزند خود را تشویق کنید که تمرینات ساده‌ای را که در کارگاه یاد می‌گیرد (مثلاً تمرینات تنفس یا بازی‌های فکری ساده)، در خانه نیز به صورت منظم انجام دهد. حتی چند دقیقه تمرین روزانه نیز می‌تواند بسیار مؤثر باشد.</p>
+                    </div>
+                </div>
+                
+                <!-- Guideline Card 3: Patience -->
+                <div class="guideline-card bg-white rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-5 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-indigo-700">صبوری و حمایت مثبت</h3>
+                        <span class="text-3xl icon-arrow">❤️</span>
+                    </div>
+                    <div class="details px-5 text-slate-600 border-t border-slate-200">
+                        <p>در طول این مسیر، صبور باشید. پیشرفت در توجه و تمرکز نیازمند زمان است. هر گام کوچک فرزندتان را تشویق کنید و به او احساس توانمندی بدهید. از مقایسه با دیگران پرهیز کنید.</p>
+                    </div>
+                </div>
+
+                <!-- Guideline Card 4: Screen Time -->
+                <div class="guideline-card bg-white rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-5 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-indigo-700">کاهش زمان استفاده از فضای مجازی</h3>
+                        <span class="text-3xl icon-arrow">📱</span>
+                    </div>
+                    <div class="details px-5 text-slate-600 border-t border-slate-200">
+                        <p class="mb-3">**لطفاً استفاده فرزندانتان از دستگاه‌های الکترونیکی و فضای مجازی (موبایل، تبلت، تلویزیون، بازی‌های ویدئویی) را به حداقل برسانید.** تحقیقات نشان می‌دهد که استفاده بیش از حد از این وسایل می‌تواند تأثیر منفی بر دامنه توجه و توانایی تمرکز کودکان داشته باشد.</p>
+                        <p class="font-semibold mb-2">جایگزین‌های پیشنهادی:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>مطالعه کتاب 📚</li>
+                            <li>بازی‌های رومیزی 🎲</li>
+                            <li>فعالیت‌های هنری 🎨</li>
+                            <li>ورزش و بازی‌های فیزیکی ⚽</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guideline Card 5: Sleep & Nutrition -->
+                <div class="guideline-card bg-white rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-5 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-indigo-700">خواب کافی و تغذیه مناسب</h3>
+                        <span class="text-3xl icon-arrow">😴</span>
+                    </div>
+                    <div class="details px-5 text-slate-600 border-t border-slate-200">
+                        <p>مطمئن شوید فرزندتان به اندازه کافی می‌خوابد و تغذیه‌ای سالم و متعادل دارد. این دو عامل نقش حیاتی در عملکرد مغز و توانایی تمرکز دارند.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Visualization Section -->
+        <section class="mb-12">
+             <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">📊 توازن ایده‌آل روزانه یک قهرمان</h2>
+             <div class="bg-white p-6 rounded-xl shadow-lg max-w-2xl mx-auto">
+                <div class="chart-container relative h-80 md:h-96 w-full mx-auto max-w-lg">
+                    <canvas id="activityBalanceChart"></canvas>
+                </div>
+             </div>
+        </section>
+
+        <!-- AI-Powered Owl Features Section -->
+        <div class="mt-8 w-full p-4 bg-purple-50 rounded-lg shadow-inner">
+            <h2 class="text-xl font-semibold text-purple-700 mb-4 text-center">
+                ✨مشاوره جغد دانا✨
+            </h2>
+            <p class="text-sm text-gray-600 mb-3 text-center">
+                یک سوال از جغد دانا درباره تمرکز و حواس‌جمعی بپرس:
+            </p>
+            <input type="text" id="owlQuestion" placeholder="مثلاً: چطور حواسمو جمع کنم؟"
+                   class="w-full p-3 border border-purple-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-200 text-right"
+                   style="direction: rtl;">
+            <button id="askOwlButton"
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 mb-4">
+                از جغد دانا بپرس ✨
+            </button>
+
+            <div id="loadingIndicatorConsultation" class="hidden text-center mt-4 text-purple-600 font-medium">
+                جغد دانا داره فکر می‌کنه... 🦉🤔
+            </div>
+
+            <div id="owlResponseConsultation" class="mt-5 p-4 bg-purple-100 border border-purple-200 rounded-md text-purple-800 text-lg text-center hidden">
+                <!-- Owl's advice will be displayed here -->
+            </div>
+
+            <!-- Focused Story Section -->
+            <div class="mt-8 pt-4 border-t border-purple-200">
+                <h2 class="text-xl font-semibold text-purple-700 mb-4 text-center">
+                    ✨داستان حواس‌جمع✨
+                </h2>
+                <p class="text-sm text-gray-600 mb-3 text-center">
+                    بیا یک داستان کوتاه و آموزنده از جغد دانا بشنویم!
+                </p>
+                <button id="getStoryButton"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                    داستان بگو جغد دانا ✨
+                </button>
+                <div id="loadingIndicatorStory" class="hidden text-center mt-4 text-green-600 font-medium">
+                    جغد دانا داره داستان می‌بافه... 📚🦉
+                </div>
+                <div id="owlResponseStory" class="mt-5 p-4 bg-green-100 border border-green-200 rounded-md text-green-800 text-lg text-center hidden" style="text-align: justify; direction: rtl;">
+                    <!-- Owl's story will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Daily Focus Challenge Section -->
+            <div class="mt-8 pt-4 border-t border-purple-200">
+                <h2 class="text-xl font-semibold text-purple-700 mb-4 text-center">
+                    ✨چالش تمرکز امروز✨
+                </h2>
+                <p class="text-sm text-gray-600 mb-3 text-center">
+                    یک چالش ساده برای تقویت تمرکزت از جغد دانا بگیر!
+                </p>
+                <button id="getChallengeButton"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    چالش امروز ✨
+                </button>
+                <div id="loadingIndicatorChallenge" class="hidden text-center mt-4 text-blue-600 font-medium">
+                    جغد دانا داره چالش پیدا می‌کنه... 🧩🦉
+                </div>
+                <div id="owlResponseChallenge" class="mt-5 p-4 bg-blue-100 border border-blue-200 rounded-md text-blue-800 text-lg text-center hidden">
+                    <!-- Owl's challenge will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Owl's Riddle Section -->
+            <div class="mt-8 pt-4 border-t border-purple-200">
+                <h2 class="text-xl font-semibold text-purple-700 mb-4 text-center">
+                    ✨معمای جغد دانا✨
+                </h2>
+                <p class="text-sm text-gray-600 mb-3 text-center">
+                    با دقت گوش بده و معمای جغد دانا رو حل کن!
+                </p>
+                <button id="getRiddleButton"
+                        class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2">
+                    معما بگو ✨
+                </button>
+                <div id="loadingIndicatorRiddle" class="hidden text-center mt-4 text-yellow-600 font-medium">
+                    جغد دانا داره معما می‌سازه... �🦉
+                </div>
+                <div id="owlResponseRiddle" class="mt-5 p-4 bg-yellow-100 border border-yellow-200 rounded-md text-yellow-800 text-lg text-center hidden" style="text-align: justify; direction: rtl;">
+                    <!-- Owl's riddle will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Owl's Calming Breath Section -->
+            <div class="mt-8 pt-4 border-t border-purple-200">
+                <h2 class="text-xl font-semibold text-purple-700 mb-4 text-center">
+                    ✨تنفس آرامش جغد✨
+                </h2>
+                <p class="text-sm text-gray-600 mb-3 text-center">
+                    جغد دانا بهت یاد میده چطور با نفس‌هات آروم بگیری.
+                </p>
+                <button id="getBreathButton"
+                        class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                    شروع تنفس آرامش ✨
+                </button>
+                <div id="loadingIndicatorBreath" class="hidden text-center mt-4 text-teal-600 font-medium">
+                    جغد دانا داره آماده میشه... 🧘‍♀️🦉
+                </div>
+                <div id="owlResponseBreath" class="mt-5 p-4 bg-teal-100 border border-teal-200 rounded-md text-teal-800 text-lg text-center hidden" style="text-align: justify; direction: rtl;">
+                    <!-- Owl's breathing exercise will be displayed here -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Game Section (Manual Games) -->
+        <section class="mb-12 pt-8 border-t border-slate-200">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">🎮 بازی‌های تمرکز و توجه برای قهرمانان کوچک 🎮</h2>
+            <p class="text-center text-slate-600 mb-6">
+                اینجا می‌تونید با بازی‌های ساده و سرگرم‌کننده، حواس‌جمع بودن رو تمرین کنید. هر بار که روی دکمه کلیک می‌کنید، یک بازی جدید ظاهر میشه!
+            </p>
+
+            <div class="flex justify-center mb-6">
+                <button id="newGameButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    بازی جدید ✨
+                </button>
+            </div>
+
+            <div id="gameContainer" class="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto min-h-[200px] flex items-center justify-center text-center text-slate-700 text-xl">
+                برای شروع، روی "بازی جدید" کلیک کنید!
+            </div>
+        </section>
+        
+        <!-- Home Exercises Section -->
+        <section class="mb-12 pt-8 border-t border-slate-200">
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">📝 تمرینات و کاربرگ‌های در منزل برای تقویت حواس‌جمعی 📝</h2>
+            <p class="text-center text-slate-600 mb-6">
+                این تمرینات ساده را می‌توانید به صورت روزانه با فرزندتان انجام دهید تا مهارت‌های توجه و تمرکز او را در محیط خانه تقویت کنید.
+            </p>
+
+            <div class="flex justify-center mb-6">
+                <button id="newHomeExerciseButton" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
+                    مشاهده تمرین جدید 📋
+                </button>
+            </div>
+
+            <div id="homeExerciseContainer" class="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto min-h-[200px] flex flex-col justify-center text-center text-slate-700">
+                <h3 id="homeExerciseTitle" class="text-2xl font-semibold text-rose-700 mb-3 hidden"></h3>
+                <p id="homeExerciseDescription" class="text-base text-slate-600 mb-4 hidden"></p>
+                <p id="homeExerciseInitialMessage" class="text-xl">برای مشاهده تمرین، روی "مشاهده تمرین جدید" کلیک کنید!</p>
+            </div>
+        </section>
+
+
+        <!-- Closing Section -->
+        <footer class="text-center pt-8 border-t border-slate-200">
+            <p class="text-lg text-slate-700 mb-4">ما متعهدیم که با بهترین و جذاب‌ترین روش‌ها، مهارت‌های توجه و تمرکز را در فرزندان شما تقویت کنیم. با یاری و همکاری شما، می‌توانیم آینده‌ای روشن‌تر و متمرکزتر برای قهرمانان کوچکمان بسازیم.</p>
+            <p class="font-semibold text-indigo-800">حمیده شریفی</p>
+            <p class="text-slate-500">مشاور دوره اول</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Element references for Owl AI Features
+            const askOwlButton = document.getElementById('askOwlButton');
+            const owlQuestionInput = document.getElementById('owlQuestion');
+            const owlResponseConsultationDiv = document.getElementById('owlResponseConsultation');
+            const loadingIndicatorConsultation = document.getElementById('loadingIndicatorConsultation');
+
+            const getStoryButton = document.getElementById('getStoryButton');
+            const owlResponseStoryDiv = document.getElementById('owlResponseStory');
+            const loadingIndicatorStory = document.getElementById('loadingIndicatorStory');
+
+            const getChallengeButton = document.getElementById('getChallengeButton');
+            const owlResponseChallengeDiv = document.getElementById('owlResponseChallenge');
+            const loadingIndicatorChallenge = document.getElementById('loadingIndicatorChallenge');
+            
+            const getRiddleButton = document.getElementById('getRiddleButton');
+            const owlResponseRiddleDiv = document.getElementById('owlResponseRiddle');
+            const loadingIndicatorRiddle = document.getElementById('loadingIndicatorRiddle');
+
+            const getBreathButton = document.getElementById('getBreathButton');
+            const owlResponseBreathDiv = document.getElementById('owlResponseBreath');
+            const loadingIndicatorBreath = document.getElementById('loadingIndicatorBreath');
+
+            // --- اینجاست که شما باید کلید API خود را وارد کنید ---
+            // کاربر گرامی: کلید API خود را که از Google AI Studio دریافت کرده‌اید، اینجا قرار دهید.
+            // اگر این اپلیکیشن را در محیطی خارج از Canvas میزبانی می‌کنید، این خط ضروری است.
+            const API_KEY_FOR_ALL_AI ="AIzaSyAlg_DC6wda_V9jGuUb_WAW70Fpfhtw5Zg
+"; 
+            // -----------------------------------------------------
+
+
+            // Function to call Gemini API (for Owl features)
+            async function callGeminiAPI(systemPrompt, userPrompt, responseDiv, loadingDiv, isJson = false) {
+                loadingDiv.classList.remove('hidden');
+                responseDiv.classList.add('hidden');
+                responseDiv.textContent = ''; 
+
+                const payload = { 
+                    contents: [{ role: "user", parts: [{ text: `${systemPrompt}\n${userPrompt}` }] }],
+                    generationConfig: isJson ? {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: { "type": "STRING" }
+                        }
+                    } : undefined 
+                };
+                
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY_FOR_ALL_AI}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        if (isJson) {
+                            try {
+                                return JSON.parse(text); 
+                            } catch (e) {
+                                console.error('Error parsing JSON response from LLM:', e, 'Raw text:', text);
+                                return null; 
+                            }
+                        }
+                        responseDiv.textContent = text;
+                        responseDiv.classList.remove('hidden');
+                    } else {
+                        responseDiv.textContent = 'جغد دانا نتوانست پاسخ دهد. لطفاً دوباره تلاش کنید.';
+                        responseDiv.classList.remove('hidden');
+                        console.error('Unexpected LLM response structure:', result);
+                    }
+                } catch (error) {
+                    responseDiv.textContent = 'مشکلی در ارتباط با جغد دانا پیش آمد. لطفاً اتصال اینترنت خود را بررسی کنید.';
+                    responseDiv.classList.remove('hidden');
+                    console.error('Error fetching LLM response:', error);
+                } finally {
+                    loadingDiv.classList.add('hidden');
+                }
+                return null; 
+            }
+
+            // Event Listener for Owl Consultation
+            askOwlButton.addEventListener('click', () => {
+                const prompt = owlQuestionInput.value.trim();
+                if (!prompt) {
+                    owlResponseConsultationDiv.textContent = 'لطفاً سوالی از جغد دانا بپرس!';
+                    owlResponseConsultationDiv.classList.remove('hidden');
+                    return;
+                }
+                const systemPrompt = `به عنوان یک جغد دانا و قهرمان حواس جمع، توصیه‌های کوتاه، ساده و دلگرم‌کننده‌ای به یک کودک 7-8 ساله درباره نحوه بهبود تمرکز و حواس‌جمعی او بده. این توصیه باید برای یک کودک قابل فهم و عملی باشد. آن را در 2 تا 3 جمله خلاصه کن. زبان پاسخ فارسی باشد.`;
+                callGeminiAPI(systemPrompt, `سوال کودک: ${prompt}`, owlResponseConsultationDiv, loadingIndicatorConsultation);
+            });
+
+            // Event Listener for Focused Story
+            getStoryButton.addEventListener('click', () => {
+                const systemPrompt = `به عنوان یک جغد دانا و داستان‌گو، یک داستان کوتاه، ساده و جذاب (حدود 3-5 جمله) برای یک کودک 7-8 ساله درباره اهمیت تمرکز یا چگونگی حفظ حواس‌جمعی تعریف کن. داستان باید با کلمات و مفاهیم کودکانه باشد. زبان پاسخ فارسی باشد.`;
+                callGeminiAPI(systemPrompt, `داستانی درباره تمرکز بگو.`, owlResponseStoryDiv, loadingIndicatorStory);
+            });
+
+            // Event Listener for Daily Focus Challenge
+            getChallengeButton.addEventListener('click', () => {
+                const systemPrompt = `به عنوان یک جغد دانا و مربی، یک چالش روزانه بسیار ساده و عملی (در حد یک جمله) برای یک کودک 7-8 ساله پیشنهاد بده که به او در تقویت تمرکز و حواس‌جمعی کمک کند. مثال: "امروز وقتی نقاشی می‌کنی، سعی کن فقط به نقاشی‌ات فکر کنی و به صدای تلویزیون گوش نده." زبان پاسخ فارسی باشد.`;
+                callGeminiAPI(systemPrompt, `یک چallenge تمرکز برای امروز پیشنهاد بده.`, owlResponseChallengeDiv, loadingIndicatorChallenge);
+            });
+
+            // Event Listener for Owl's Riddle
+            getRiddleButton.addEventListener('click', () => {
+                const systemPrompt = `به عنوان یک جغد دانا و معماگو، یک معمای ساده و کودکانه (حداکثر 2 جمله) برای یک کودک 7-8 ساله مطرح کن که برای حل آن نیاز به کمی دقت و تفکر باشد. پاسخ معما را در ادامه نده. زبان پاسخ فارسی باشد.`;
+                callGeminiAPI(systemPrompt, `یک معما بگو.`, owlResponseRiddleDiv, loadingIndicatorRiddle);
+            });
+
+            // Event Listener for Owl's Calming Breath Exercise
+            getBreathButton.addEventListener('click', () => {
+                const systemPrompt = `به عنوان یک جغد دانا و مربی آرامش، یک تمرین تنفس آرامش‌بخش بسیار ساده و کوتاه (3-4 جمله) برای یک کودک 7-8 ساله هدایت کن. بر روی دم و بازدم آرام تمرکز کن و از کلمات دلنشین استفاده کن. زبان پاسخ فارسی باشد.`;
+                callGeminiAPI(systemPrompt, `یک تمرین تنفس آرامش‌بخش بگو.`, owlResponseBreathDiv, loadingIndicatorBreath);
+            });
+
+
+            const guidelineCards = document.querySelectorAll('.guideline-card');
+
+            guidelineCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    guidelineCards.forEach(otherCard => {
+                        if (otherCard !== card && otherCard.classList.contains('active')) {
+                            otherCard.classList.remove('active');
+                        }
+                    });
+                    card.classList.toggle('active');
+                });
+            });
+
+            const ctx = document.getElementById('activityBalanceChart').getContext('2d');
+            const activityBalanceChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['خواب', 'مدرسه و تکالیف', 'بازی و ورزش', 'زمان خلاقیت', 'وعده‌های غذایی', 'زمان نمایشگر (حداکثر)'],
+                    datasets: [{
+                        label: 'ساعات پیشنهادی در روز',
+                        data: [10, 5, 2, 2, 2, 1],
+                        backgroundColor: [
+                            'rgba(88, 80, 236, 0.8)',
+                            'rgba(129, 140, 248, 0.8)',
+                            'rgba(20, 184, 166, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(239, 68, 68, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 1)'
+                        ],
+                        borderWidth: 3,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Vazirmatn',
+                                    size: 14
+                                },
+                                color: '#334155'
+                            }
+                        },
+                        tooltip: {
+                            bodyFont: {
+                                family: 'Vazirmatn'
+                            },
+                            titleFont: {
+                                family: 'Vazirmatn'
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + ' ساعت';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const games = [
+                {
+                    id: 'stroop',
+                    title: 'بازی رنگ و کلمه',
+                    description: 'کلمه زیر را بخوانید و بگویید **رنگ واقعی کلمه** چیست.',
+                    content: `
+                        <div class="text-4xl font-bold mb-4" id="stroopWord"></div>
+                        <div class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg m-2 stroop-btn" data-answer="آبی">آبی</button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg m-2 stroop-btn" data-answer="قرمز">قرمز</button>
+                            <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg m-2 stroop-btn" data-answer="سبز">سبز</button>
+                            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-lg m-2 stroop-btn" data-answer="زرد">زرد</button>
+                        </div>
+                        <p id="stroopFeedback" class="mt-4 text-lg font-semibold"></p>
+                    `,
+                    setup: function(containerId) {
+                        const colors = [
+                            { word: 'قرمز', displayColor: 'blue', hex: '#3B82F6' },
+                            { word: 'آبی', displayColor: 'red', hex: '#EF4444' },
+                            { word: 'سبز', displayColor: 'purple', hex: '#A855F7' },
+                            { word: 'زرد', displayColor: 'green', hex: '#22C55E' }
+                        ];
+                        const randomIndex = Math.floor(Math.random() * colors.length);
+                        const chosenColor = colors[randomIndex];
+
+                        const stroopWordElement = document.getElementById('stroopWord');
+                        stroopWordElement.textContent = chosenColor.word;
+                        stroopWordElement.style.color = chosenColor.hex;
+
+                        const buttons = document.querySelectorAll(`#${containerId} .stroop-btn`);
+                        const feedbackElement = document.getElementById('stroopFeedback');
+                        feedbackElement.textContent = ''; 
+
+                        buttons.forEach(button => {
+                            button.onclick = () => {
+                                if (button.dataset.answer === chosenColor.word) {
+                                    feedbackElement.textContent = 'درست بود! قهرمان حواس جمع! 🎉';
+                                    feedbackElement.className = 'mt-4 text-lg font-semibold text-green-600';
+                                } else {
+                                    feedbackElement.textContent = 'نزدیک بود! دوباره امتحان کن. 🤔';
+                                    feedbackElement.className = 'mt-4 text-lg font-semibold text-red-600';
+                                }
+                            };
+                        });
+                    }
+                },
+                {
+                    id: 'oddOneOut',
+                    title: 'پیدا کردن متفاوت',
+                    description: 'روی شکل متفاوتی که در بین بقیه پنهان شده کلیک کنید!',
+                    content: `
+                        <div class="grid grid-cols-4 gap-2 text-3xl mb-4 max-w-xs mx-auto" id="oddOneOutGrid"></div>
+                        <p id="oddOneOutFeedback" class="mt-4 text-lg font-semibold"></p>
+                    `,
+                    setup: function(containerId) {
+                        const commonEmoji = '🍎';
+                        const oddEmoji = '🍏';
+                        const totalEmojis = 16;
+                        const emojis = Array(totalEmojis - 1).fill(commonEmoji);
+                        const randomIndex = Math.floor(Math.random() * totalEmojis);
+                        emojis.splice(randomIndex, 0, oddEmoji);
+                        
+                        const oddOneOutGrid = document.getElementById('oddOneOutGrid');
+                        const feedbackElement = document.getElementById('oddOneOutFeedback');
+                        oddOneOutGrid.innerHTML = '';
+                        feedbackElement.textContent = '';
+
+                        emojis.forEach((emoji, index) => {
+                            const span = document.createElement('span');
+                            span.textContent = emoji;
+                            span.className = 'flex items-center justify-center p-2 rounded-md hover:bg-slate-100 cursor-pointer transition-colors duration-200';
+                            span.dataset.index = index;
+                            oddOneOutGrid.appendChild(span);
+
+                            span.onclick = () => {
+                                if (parseInt(span.dataset.index) === randomIndex) {
+                                    feedbackElement.textContent = 'درست بود! قهرمان حواس جمع! 🎉';
+                                    feedbackElement.className = 'mt-4 text-lg font-semibold text-green-600';
+                                } else {
+                                    feedbackElement.textContent = 'نزدیک بود! دوباره امتحان کن. 🤔';
+                                    feedbackElement.className = 'mt-4 text-lg font-semibold text-red-600';
+                                }
+                            };
+                        });
+                    }
+                },
+                {
+                    id: 'quickCount',
+                    title: 'شمارش سریع',
+                    description: 'در کمتر از 5 ثانیه بگویید چند تا ستاره ⭐ وجود دارد؟',
+                    content: `
+                        <div class="text-4xl mb-4 leading-relaxed flex flex-wrap justify-center" id="countObjectsDisplay"></div>
+                        <input type="number" id="countInput" class="w-24 p-2 border rounded text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" placeholder="عدد" />
+                        <button id="checkCountButton" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg mt-4 shadow-md transition duration-300 transform hover:scale-105">بررسی</button>
+                        <p id="countFeedback" class="mt-4 text-lg font-semibold"></p>
+                    `,
+                    setup: function(containerId) {
+                        const targetEmoji = '⭐';
+                        const otherEmoji = '✨';
+                        const numStars = Math.floor(Math.random() * 5) + 3;
+                        const totalEmojis = 20;
+                        const emojis = Array(totalEmojis - numStars).fill(otherEmoji);
+                        for (let i = 0; i < numStars; i++) {
+                            emojis.push(targetEmoji);
+                        }
+                        emojis.sort(() => Math.random() - 0.5);
+
+                        const displayElement = document.getElementById('countObjectsDisplay');
+                        const inputElement = document.getElementById('countInput');
+                        const checkButton = document.getElementById('checkCountButton');
+                        const feedbackElement = document.getElementById('countFeedback');
+
+                        displayElement.textContent = emojis.join('');
+                        inputElement.value = '';
+                        feedbackElement.textContent = '';
+                        inputElement.disabled = false;
+                        checkButton.disabled = false;
+
+                        let timer = setTimeout(() => {
+                            if (feedbackElement.textContent === '') {
+                                feedbackElement.textContent = 'زمان تمام شد! 🤔';
+                                feedbackElement.className = 'mt-4 text-lg font-semibold text-red-600';
+                                checkButton.disabled = true;
+                                inputElement.disabled = true;
+                            }
+                        }, 5000);
+
+                        checkButton.onclick = () => {
+                            clearTimeout(timer);
+                            checkButton.disabled = true;
+                            inputElement.disabled = true;
+                            if (parseInt(inputElement.value) === numStars) {
+                                feedbackElement.textContent = 'درست بود! قهرمان حواس جمع! 🎉';
+                                feedbackElement.className = 'mt-4 text-lg font-semibold text-green-600';
+                            } else {
+                                feedbackElement.textContent = `نزدیک بود! تعداد درست ${numStars} بود. 🤔`;
+                                feedbackElement.className = 'mt-4 text-lg font-semibold text-red-600';
+                            }
+                        };
+                    }
+                },
+                {
+                    id: 'memoryMatch',
+                    title: 'بازی تطابق حافظه 🧠',
+                    description: 'کارت‌ها را برگردانید و جفت‌های مشابه را پیدا کنید! (هدف: یافتن همه جفت‌ها)',
+                    content: `
+                        <div class="memory-grid mb-4" id="memoryGrid"></div>
+                        <p id="memoryFeedback" class="mt-4 text-lg font-semibold"></p>
+                        <button id="memoryResetBtn" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg mt-4 shadow-md transition duration-300 transform hover:scale-105">شروع مجدد</button>
+                    `,
+                    setup: function(containerId) {
+                        const emojis = ['🍇', '🍓', '🍋', '🥝', '🍉', '🍍', '🥭', '🍒'];
+                        const gameEmojis = [...emojis, ...emojis]; // Duplicate for pairs
+                        gameEmojis.sort(() => Math.random() - 0.5); // Shuffle
+
+                        const memoryGrid = document.getElementById('memoryGrid');
+                        const memoryFeedback = document.getElementById('memoryFeedback');
+                        const memoryResetBtn = document.getElementById('memoryResetBtn');
+
+                        memoryGrid.innerHTML = '';
+                        memoryFeedback.textContent = '';
+                        memoryResetBtn.onclick = () => games.find(g => g.id === 'memoryMatch').setup(containerId);
+
+                        let flippedCards = [];
+                        let matchedCards = [];
+                        let canFlip = true;
+
+                        gameEmojis.forEach((emoji, index) => {
+                            const card = document.createElement('div');
+                            card.className = 'memory-card';
+                            card.dataset.emoji = emoji;
+                            card.dataset.index = index;
+                            card.innerHTML = `
+                                <div class="card-face card-back">?</div>
+                                <div class="card-face card-front">${emoji}</div>
+                            `;
+                            memoryGrid.appendChild(card);
+
+                            card.onclick = () => {
+                                if (!canFlip || flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                                    return;
+                                }
+
+                                card.classList.add('flipped');
+                                flippedCards.push(card);
+
+                                if (flippedCards.length === 2) {
+                                    canFlip = false;
+                                    setTimeout(() => {
+                                        const [card1, card2] = flippedCards;
+                                        if (card1.dataset.emoji === card2.dataset.emoji) {
+                                            card1.classList.add('matched');
+                                            card2.classList.add('matched');
+                                            matchedCards.push(card1, card2);
+                                            memoryFeedback.textContent = 'جفت پیدا شد! 🎉';
+                                            memoryFeedback.className = 'mt-4 text-lg font-semibold text-green-600';
+                                        } else {
+                                            card1.classList.remove('flipped');
+                                            card2.classList.remove('flipped');
+                                            memoryFeedback.textContent = 'اشتباه بود! 🤔';
+                                            memoryFeedback.className = 'mt-4 text-lg font-semibold text-red-600';
+                                        }
+                                        flippedCards = [];
+                                        canFlip = true;
+                                        
+                                        if (matchedCards.length === gameEmojis.length) {
+                                            memoryFeedback.textContent = 'تبریک! همه جفت‌ها را پیدا کردید! 🏆';
+                                            memoryFeedback.className = 'mt-4 text-lg font-semibold text-indigo-700';
+                                        }
+                                    }, 1000);
+                                }
+                            };
+                        });
+                    }
+                },
+                {
+                    id: 'findSequence',
+                    title: 'کشف توالی 💡',
+                    description: 'توالی زیر را به دقت نگاه کنید، سپس عنصر بعدی را انتخاب کنید.',
+                    content: `
+                        <div class="text-4xl mb-6 flex justify-center space-x-2" id="sequenceDisplay"></div>
+                        <div class="flex flex-wrap justify-center gap-4" id="sequenceOptions"></div>
+                        <p id="sequenceFeedback" class="mt-4 text-lg font-semibold"></p>
+                    `,
+                    setup: function(containerId) {
+                        const elements = ['🔴', '🔵', '🟢', '🟡', '🟣', '🟠'];
+                        const sequenceLength = 4;
+                        const sequence = [];
+                        for (let i = 0; i < sequenceLength; i++) {
+                            sequence.push(elements[Math.floor(Math.random() * elements.length)]);
+                        }
+                        // Determine the next element based on a simple rule or random
+                        const nextElement = elements[Math.floor(Math.random() * elements.length)]; // Simple random for now
+                        sequence.push(nextElement); // The full sequence, last one is the answer
+
+                        const displaySequence = sequence.slice(0, sequenceLength); // Show only part of the sequence
+
+                        const sequenceDisplay = document.getElementById('sequenceDisplay');
+                        const sequenceOptions = document.getElementById('sequenceOptions');
+                        const sequenceFeedback = document.getElementById('sequenceFeedback');
+
+                        sequenceDisplay.textContent = displaySequence.join(' ');
+                        sequenceOptions.innerHTML = '';
+                        sequenceFeedback.textContent = '';
+
+                        const options = [...new Set(elements)]; // Unique options
+                        options.sort(() => Math.random() - 0.5); // Shuffle options
+
+                        options.forEach(optionEmoji => {
+                            const button = document.createElement('button');
+                            button.textContent = optionEmoji;
+                            button.className = 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg text-3xl shadow-md transition duration-300 transform hover:scale-105';
+                            button.onclick = () => {
+                                if (optionEmoji === nextElement) {
+                                    sequenceFeedback.textContent = 'درست بود! قهرمان حواس جمع! 🎉';
+                                    sequenceFeedback.className = 'mt-4 text-lg font-semibold text-green-600';
+                                } else {
+                                    sequenceFeedback.textContent = 'نزدیک بود! دوباره امتحان کن. 🤔';
+                                    feedbackElement.className = 'mt-4 text-lg font-semibold text-red-600';
+                                }
+                                // Disable options after first click
+                                document.querySelectorAll(`#${containerId} #sequenceOptions button`).forEach(btn => btn.disabled = true);
+                            };
+                            sequenceOptions.appendChild(button);
+                        });
+                    }
+                }
+            ];
+
+            let currentGameIndex = -1;
+
+            function loadGame() {
+                const gameContainer = document.getElementById('gameContainer');
+                let nextGameIndex;
+                do {
+                    nextGameIndex = Math.floor(Math.random() * games.length);
+                } while (nextGameIndex === currentGameIndex);
+                currentGameIndex = nextGameIndex;
+
+                const game = games[currentGameIndex];
+                
+                gameContainer.innerHTML = `
+                    <div class="w-full flex flex-col items-center">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-3">${game.title}</h3>
+                        <p class="text-base text-slate-600 mb-6">${game.description}</p>
+                        ${game.content}
+                    </div>
+                `;
+
+                game.setup('gameContainer');
+            }
+
+            document.getElementById('newGameButton').addEventListener('click', loadGame);
+
+            document.getElementById('gameContainer').innerHTML = `
+                <div class="text-xl text-slate-700">
+                    برای شروع، روی "بازی جدید" کلیک کنید!
+                </div>
+            `;
+
+            // Home Exercises Logic
+            const homeExercises = [
+                {
+                    title: '۱. بازی "صدای یاب" (تقویت شنیداری و توجه انتخابی)',
+                    description: `
+                        با کودک در اتاق یا فضای خانه بنشینید. چشمان کودک را ببندید یا از او بخواهید چشمانش را ببندد.
+                        شما صداهای مختلفی در اطراف تولید کنید (مثلاً زدن قاشق به لیوان، ورق زدن کتاب، صدای کلید، بستن آهسته در).
+                        از کودک بخواهید بعد از هر صدا، آن را شناسایی کند و سپس منبع صدا را با چشمان بسته حدس بزند.
+                        می‌توانید صداها را دور یا نزدیک، آهسته یا بلند کنید تا چالش بیشتری ایجاد شود.
+                    `
+                },
+                {
+                    title: '۲. "کارآگاه رنگ‌ها" (تقویت دیداری و توجه پایدار)',
+                    description: `
+                        به کودک یک شیء با رنگ خاص (مثلاً یک مداد آبی) نشان دهید و از او بخواهید در اتاق یا فضای خانه، تمام اشیاء دیگری را که همان رنگ را دارند، پیدا کند و نام ببرد.
+                        می‌توانید برای این کار زمان تعیین کنید (مثلاً ۱ دقیقه).
+                        سپس رنگ شیء را تغییر دهید و بازی را تکرار کنید. این بازی به دقت بینایی و حفظ تمرکز بر یک ویژگی خاص کمک می‌کند.
+                    `
+                },
+                {
+                    title: '۳. "شمارش معکوس سکوت" (تقویت خودتنظیمی و تمرکز)',
+                    description: `
+                        با کودک در محیطی آرام بنشینید. از او بخواهید چشمانش را ببندد یا به یک نقطه ثابت نگاه کند.
+                        از کودک بخواهید در ذهن خود از عدد ۱۰ به ۱ به صورت معکوس بشمارد و سعی کند در تمام این مدت، هیچ صدای دیگری او را اذیت نکند و روی شمارش خود متمرکز بماند.
+                        اگر صدای مزاحمی شنید، باید از اول شروع کند. این تمرین به کنترل تکانه و مقاومت در برابر حواس‌پرتی کمک می‌کند.
+                    `
+                },
+                {
+                    title: '۴. "داستان ادامه بده" (تقویت حافظه و توالی)',
+                    description: `
+                        شما یک جمله کوتاه را شروع کنید (مثلاً: "یک روز، یک پرنده کوچک از لانه‌اش بیرون آمد و...").
+                        سپس کودک یک جمله به آن اضافه کند. بعد شما دوباره یک جمله اضافه کنید و به همین ترتیب داستان را ادامه دهید.
+                        نکته مهم این است که هر نفر باید تمام جملات قبلی را به خاطر بسپارد و داستان را با حفظ توالی ادامه دهد. این فعالیت حافظه کاری و توالی شنیداری را تقویت می‌کند.
+                    `
+                },
+                {
+                    title: '۵. "پیدا کن تفاوت‌ها" (کاربرگ دیداری)',
+                    description: `
+                        یک کاربرگ آماده از بازی "پیدا کردن تفاوت‌ها" (دو تصویر مشابه که چند تفاوت کوچک دارند) را پرینت بگیرید.
+                        همراه با کودک، تفاوت‌ها را یکی یکی پیدا کنید و علامت بزنید.
+                        این فعالیت به تقویت توجه جزئی‌نگر و دقت بینایی کمک می‌کند. می‌توانید تعداد تفاوت‌ها و پیچیدگی تصویر را بر اساس سن و توانایی کودک تنظیم کنید.
+                    `
+                }
+            ];
+
+            let currentHomeExerciseIndex = -1;
+
+            function loadHomeExercise() {
+                const homeExerciseTitle = document.getElementById('homeExerciseTitle');
+                const homeExerciseDescription = document.getElementById('homeExerciseDescription');
+                const homeExerciseInitialMessage = document.getElementById('homeExerciseInitialMessage');
+
+                let nextIndex;
+                do {
+                    nextIndex = Math.floor(Math.random() * homeExercises.length);
+                } while (nextIndex === currentHomeExerciseIndex);
+                currentHomeExerciseIndex = nextIndex;
+
+                const exercise = homeExercises[currentHomeExerciseIndex];
+                
+                homeExerciseInitialMessage.classList.add('hidden');
+                homeExerciseTitle.textContent = exercise.title;
+                homeExerciseDescription.textContent = exercise.description;
+                homeExerciseTitle.classList.remove('hidden');
+                homeExerciseDescription.classList.remove('hidden');
+            }
+
+            document.getElementById('newHomeExerciseButton').addEventListener('click', loadHomeExercise);
+
+        });
+    </script>
+</body>
+</html>
